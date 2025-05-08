@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Trabalho 1",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-pedantic",
+                "-Wall",
+                "-I${workspaceFolder}/include",
+                "${workspaceFolder}/src/*.cpp",
+                "-o",
+                "${workspaceFolder}/main",
+                "-lm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compila o Trabalho 1 - Zoológico"
+        }
+    ]
+}
