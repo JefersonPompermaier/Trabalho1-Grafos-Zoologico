@@ -4,7 +4,7 @@
  * GEN254 - Grafos - 2025/1
  *
  * Nome:      Jeferson Pompermaier e Marco Lunardi
- * Matricula: 2221101042 e 
+ * Matricula: 2221101042 e 2221101054
  */
 
  #ifndef GRAFO_H
@@ -12,19 +12,19 @@
  
  #include "Aresta.h"
  #include <vector>
+
+ using namespace std;
  
  class Grafo {
  public:
      Grafo(int num_vertices);
-     ~Grafo();
      void insere_aresta(Aresta e);
      bool eh_bipartido_1();
      bool eh_bipartido_2();
  private:
      int num_vertices_;
-     std::vector<std::vector<bool>> matriz_adj_;
-     bool eh_bipartido_1_recursivo(int v, std::vector<int>& conjunto1, std::vector<int>& conjunto2, std::vector<bool>& removidos);
-     bool eh_bipartido_2_dfs(int v, std::vector<int>& cores, std::vector<bool>& visitados);
+     vector<vector<int>> matriz_adj_;
+     bool eh_bipartido_2_prof(int v, vector<int>& cores, vector<int>& visitados);
  };
  
  #endif /* GRAFO_H */

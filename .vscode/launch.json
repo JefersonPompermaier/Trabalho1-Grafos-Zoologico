@@ -2,40 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run with Input",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/main",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "Build Trabalho 1",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "stdio": [
-        "${workspaceFolder}/teste1.txt",
-        null,
-        null
-      ]
-    },
-    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "c:/Users/marco/OneDrive/Documentos/grafos",
+      "program": "c:/Users/marco/OneDrive/Documentos/grafos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
