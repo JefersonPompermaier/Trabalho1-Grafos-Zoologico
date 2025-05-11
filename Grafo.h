@@ -25,6 +25,7 @@
      int num_vertices_;
      vector<vector<int>> matriz_adj_;
      bool eh_bipartido_2_prof(int v, vector<int>& cores, vector<int>& visitados);
+     bool eh_bipartido_1_recursivo (int vertice, vector<int>& atribuicao);
  };
  
  #endif /* GRAFO_H */

@@ -23,48 +23,49 @@ void Grafo::insere_aresta(Aresta e) {
     }
 }
 
-// Verifica se o grafo é bipartido em ordem decrescente
+// Função pública que inicia a verificação se o grafo é bipartido
 bool Grafo::eh_bipartido_1() {
-    vector<int> atribuicao(num_vertices_, -1); // -1: não atribuído, 0: conjunto A, 1: conjunto B
+    vector<int> atribuicao(num_vertices_, -1); // -1: vértice ainda não atribuído a nenhum conjunto
+    return eh_bipartido_1_recursivo(num_vertices_ - 1, atribuicao); // Chamada recursiva a partir do último vértice
+}
 
-    // Percorre os vértices em ordem decrescente
-    for (int vertice = num_vertices_ - 1; vertice >= 0; --vertice) {
+// Função auxiliar recursiva que tenta atribuir os vértices a dois conjuntos (0 ou 1)
+bool Grafo::eh_bipartido_1_recursivo(int vertice, vector<int>& atribuicao) {
+    if (vertice < 0) return true; // Caso base: todos os vértices foram atribuídos com sucesso
 
-        bool vai_para_grupo_A = true;
+    bool vai_para_grupo_A = true; // Tentativa de colocar o vértice atual no grupo A (0)
 
-        // Verifica se pode ir para o grupo A
-        for (int u = vertice + 1; u < num_vertices_; ++u) {
-            if (atribuicao[u] == 0 && matriz_adj_[vertice][u]) {
-                vai_para_grupo_A = false;
-                break;
-            }
-        }
-
-        // Se puder ir para A, atribui e continua
-        if (vai_para_grupo_A) {
-            atribuicao[vertice] = 0;
-            continue;
-        }
-
-        bool vai_para_grupo_B = true;
-
-        // Caso contrário, verifica se pode ir para o grupo B
-        for (int u = vertice + 1; u < num_vertices_; ++u) {
-            if (atribuicao[u] == 1 && matriz_adj_[vertice][u]) {
-                vai_para_grupo_B = false;
-                break;
-            }
-        }
-
-        // Se puder ir para B, atribui; senão, o grafo não é bipartido
-        if (vai_para_grupo_B) {
-            atribuicao[vertice] = 1;
-        } else {
-            return false; // Não pode ser colocado em nenhum conjunto
+    // Verifica se algum vértice adjacente já está no grupo A
+    for (int u = vertice + 1; u < num_vertices_; ++u) {
+        if (atribuicao[u] == 0 && matriz_adj_[vertice][u]) {
+            vai_para_grupo_A = false; // Conflito encontrado, não pode ir para grupo A
+            break;
         }
     }
-    return true; 
+
+    if (vai_para_grupo_A) {
+        atribuicao[vertice] = 0; // Atribui vértice ao grupo A
+        return eh_bipartido_1_recursivo(vertice - 1, atribuicao); // Continua com o próximo vértice
+    }
+
+    bool vai_para_grupo_B = true; // Tentativa de colocar o vértice atual no grupo B (1)
+
+    // Verifica se algum vértice adjacente já está no grupo B
+    for (int u = vertice + 1; u < num_vertices_; ++u) {
+        if (atribuicao[u] == 1 && matriz_adj_[vertice][u]) {
+            vai_para_grupo_B = false; // Conflito encontrado, não pode ir para grupo B
+            break;
+        }
+    }
+
+    if (vai_para_grupo_B) {
+        atribuicao[vertice] = 1; // Atribui vértice ao grupo B
+        return eh_bipartido_1_recursivo(vertice - 1, atribuicao); // Continua com o próximo vértice
+    }
+
+    return false; // Se não puder ir para nenhum grupo, grafo não é bipartido
 }
+
 
 // Verifica se o grafo é bipartido com busca em profundidade
 bool Grafo::eh_bipartido_2() {
