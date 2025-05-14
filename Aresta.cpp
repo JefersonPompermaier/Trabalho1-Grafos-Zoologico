@@ -4,7 +4,7 @@
  * GEN254 - Grafos - 2025/1
  *
  * Nome:      Jeferson Pompermaier e Marco Lunardi
- * Matricula: 2221101042 e 
+ * Matricula: 2221101042 e 2221101054
  */
 
  #include "Aresta.h"
